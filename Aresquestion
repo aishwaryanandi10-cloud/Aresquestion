@@ -1,17 +1,13 @@
-#!/usr/bin/env python3
 import rospy
 from std_msgs.msg import Float32
 
 def sensor_average_publisher():
-    # Initialize the ROS node
+
     rospy.init_node('sensor_average_publisher', anonymous=True)
-
-    # Publisher: publishes the average reading
     pub = rospy.Publisher('/sensor/average', Float32, queue_size=10)
+    rate = rospy.Rate(1)  
 
-    rate = rospy.Rate(1)  # publish once every second
-
-    # Hardcoded sensor readings
+    
     reading = [10, 12, 11, 13, 50]
     average = sum(reading) / len(reading)
 
